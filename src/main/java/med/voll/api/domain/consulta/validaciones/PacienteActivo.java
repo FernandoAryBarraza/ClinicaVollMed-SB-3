@@ -7,12 +7,12 @@ import med.voll.api.domain.paciente.PacienteRepository;
 public class PacienteActivo {
 
     private PacienteRepository pacienteRepository;
-    public void validar(DatosAgendarConsulta datos){
-        if (datos.idPaciente() == null){
+    public void validar(DatosAgendarConsulta datosAgendarConsulta){
+        if (datosAgendarConsulta.idPaciente() == null){
             return;
         }
 
-        var pacienteActivo = pacienteRepository.findActivoById(datos.idPaciente());
+        var pacienteActivo = pacienteRepository.findActivoById(datosAgendarConsulta.idPaciente());
 
         if(!pacienteActivo){
             throw new ValidationException("No se puede agendar citas con pacientes inactivos en el sistema");
