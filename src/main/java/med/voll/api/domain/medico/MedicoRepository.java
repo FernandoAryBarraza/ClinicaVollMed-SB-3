@@ -17,7 +17,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
     @Query("""
             select m from Medico m
             where m.activo= 1 and
-            m.especialidad= especialidad and
+            m.especialidad=:especialidad and
             m.id not in(
             select c.medico.id from Consulta c
             c.data=:fecha
@@ -30,7 +30,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
     @Query("""
             select m.activo
             from Medicos m
-            where m.id=:idMedicos 
+            where m.id=:idMedico 
             """)
-    Boolean findActivoById(Long idMedicos);
+    Boolean findActivoById(Long idMedico);
 }
